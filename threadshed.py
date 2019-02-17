@@ -126,7 +126,7 @@ for transaction in daily_transactions_split:
   transaction_clean = []
   for item in transaction:
     transaction_clean.append(item.replace('\n',' ').strip(' '))
-    transactions_clean.append(transaction_clean)
+  transactions_clean.append(transaction_clean)
 #print(transactions_clean)
 
 customers = []
@@ -146,35 +146,17 @@ for number in sales:
   total_sales += float(number.strip('$'))
 #print(total_sales)
 
-#print(thread_sold)
-
-
 thread_sold_split = []
 for thread in thread_sold: 
-  thread.split('&')
-  if '&' in thread:
-    for color in thread:
-      thread_sold_split.append(thread.replace('&', ' ').split(' '))
-  else:
-    split = []
-    split.append(thread)
-    thread_sold_split.append(split)
-
+  for color in thread.split('&'):
+    thread_sold_split.append(color)
 #print(thread_sold_split)
 
-#print(thread_sold_split)
+colors = ['red', 'yellow', 'green', 'white', 'black', 'blue', 'purple']
+def color_count():
+  for color in colors:
+    print('{threads} threads of {color} color thread were sold today.'.format(threads=thread_sold_split.count(color), color=color))
+  
 
 
-
-
-def color_count(color):
-  color_total = 0
-  for thread_color in thread_sold_split:
-    if color == 'white':
-      color_total += 1
-  return color_total
-    
-
-    
-print(color_count('white'))
-print(daily_sales.count('white'))
+color_count()
